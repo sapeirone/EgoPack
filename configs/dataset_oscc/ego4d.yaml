@@ -1,0 +1,6 @@
+_target_: data.ego4d_oscc.Ego4dOSCCDataset
+version: 1
+num_segments: 3
+aug_prob: 0
+features: slowfast8x8_r101_k400
+remove_overlapping_segments: False

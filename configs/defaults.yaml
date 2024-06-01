@@ -1,0 +1,86 @@
+name: defaults
+seed: 1
+
+device: cuda
+
+wandb_name_pattern: null
+
+batch_size: 4
+num_workers: 4
+persistent_workers: True
+
+num_epochs: 100
+eval_freq: 10
+
+k: 2
+
+optimizer:
+  _target_: torch.optim.Adam
+  lr: 1e-5
+  weight_decay: 1e-5
+
+lr_scheduler:
+  _target_: torch.optim.lr_scheduler.CosineAnnealingLR
+  T_max: ${num_epochs}
+
+log_confusion_matrices: False
+log_feature_plots: False
+
+validation_split: validation
+
+save_model: False
+save_artifacts: False
+
+weight_ar: 1
+weight_oscc: 1
+weight_lta: 1
+weight_pnr: 1
+enabled_tasks: [ar, oscc, lta, pnr]
+
+task_dropout: 0
+task_head_dropout: 0
+
+reset_classifiers: False
+enable_graphone: False
+
+resume_from: null
+
+graphone:
+  k: 8
+  depth: 3
+  dropout: 0
+  output_dropout: 0
+  distance_func: cosine
+  residual: False
+  output_projection: True
+  hidden_size: 1024
+  update_edges_interval: 1
+  share_params: False
+
+# Used in main_graphone.py
+# If true, gradients are backpropagated through the temporal graph
+backprop_temporal_graph: true
+# If true, temporal graph is in train mode
+temporal_graph_train_mode: false
+
+oscc_loss: ce
+oscc_feat_size: 1024
+
+artifact_prefix: MTL
+
+late_fusion: True
+
+# for main_graphone
+use_warmup: False
+
+validate_all_tasks: False
+
+defaults:
+  - model: graph
+  - dataset_recognition: ego4d
+  - dataset_oscc: ego4d
+  - dataset_lta: ego4d
+  - dataset_pnr: ego4d
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog
+  - _self_

@@ -1,0 +1,50 @@
+name: EgoPack - PNR
+parameters:
+  graphone.depth:
+    values:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  seed:
+    values:
+      - 65
+      - 72
+      - 97
+program: main_egopack.py
+command:
+  - ${env}
+  - python3
+  - ${program}
+  - wandb_name_pattern='PNR_depth-{graphone.depth}'
+  - k=1
+  - model=graph
+  - model/temporal_pooling=trn
+  - model.temporal_pooling.hidden_size=1024
+  - model.temporal_pooling.dropout=0.5
+  - model.hidden_size=1024
+  - model.depth=3
+  - num_workers=1
+  - batch_size=16
+  - save_model=False
+  - enable_graphone=True
+  - resume_from=egorobots/ego-graph/MTL_ar-lta-oscc:latest
+  - graphone.k=4
+  - graphone.hidden_size=1024
+  - graphone.output_projection=False
+  - graphone.residual=True
+  - enabled_tasks=pnr
+  - dataset_recognition.features=omnivore_video_swinl
+  - dataset_oscc.features=omnivore_video_swinl
+  - dataset_lta.features=omnivore_video_swinl
+  - dataset_pnr.features=omnivore_video_swinl
+  - late_fusion=True
+  - num_epochs=10
+  - optimizer._target_=torch.optim.Adam
+  - optimizer.lr=1e-6
+  - task_head_dropout=0.5
+  - backprop_temporal_graph=True
+  - temporal_graph_train_mode=True
+  - ${args_no_hyphens}
+method: grid

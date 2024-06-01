@@ -1,0 +1,4 @@
+_target_: data.ego4d_fho.Ego4dRecognitionDataset
+version: 1
+num_segments: 3
+features: slowfast8x8_r101_k400

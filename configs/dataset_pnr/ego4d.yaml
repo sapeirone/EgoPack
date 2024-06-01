@@ -1,0 +1,4 @@
+_target_: data.ego4d_oscc.Ego4dPNRDataset
+version: 1
+num_segments: 16 # resolution of ~0.5 sec
+features: slowfast8x8_r101_k400

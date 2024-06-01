@@ -1,0 +1,3 @@
+_target_: models.temporal_pooling.trn_pooling.TRNPooling
+dropout: 0.5
+hidden_size: 4096

@@ -1,0 +1,41 @@
+name: Ego4d - MTL (AR, OSCC, LTA, PNR)
+parameters:
+  enabled_tasks:
+    values:
+      - - ar
+        - oscc
+        - lta
+      - - ar
+        - oscc
+        - pnr
+      - - ar
+        - lta
+        - pnr
+      - - oscc
+        - lta
+        - pnr
+program: main.py
+command:
+  - ${env}
+  - python3
+  - ${program}
+  - seed=1
+  - wandb_name_pattern='{enabled_tasks}'
+  - artifact_prefix=MTL-
+  - k=1
+  - model=graph
+  - num_epochs=40
+  - model/temporal_pooling=trn
+  - model.temporal_pooling.hidden_size=1024
+  - model.temporal_pooling.dropout=0.5
+  - model.hidden_size=1024
+  - model.depth=3
+  - num_workers=1
+  - batch_size=16
+  - save_model=True
+  - dataset_recognition.features=omnivore_video_swinl
+  - dataset_oscc.features=omnivore_video_swinl
+  - dataset_lta.features=omnivore_video_swinl
+  - dataset_pnr.features=omnivore_video_swinl
+  - ${args_no_hyphens}
+method: grid

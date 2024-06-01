@@ -1,0 +1,21 @@
+features/*
+!features/.git-keep
+
+__pycache__
+
+wandb
+.vscode
+
+# ignore hydra outputs
+outputs
+multirun
+*.log
+
+artifacts
+embeddings
+
+*.pth
+*.sh
+test*.py
+
+ego4d_submissions/

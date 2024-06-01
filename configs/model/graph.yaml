@@ -1,0 +1,11 @@
+_target_: models.graph.Graph
+
+# Hidden size used in the temporal convolution layers
+hidden_size: 1024
+# Number of temporal convolution layers
+depth: 3
+
+pre_dropout: 0
+
+defaults:
+  - temporal_pooling: trn

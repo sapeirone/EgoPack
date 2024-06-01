@@ -1,0 +1,7 @@
+_target_: data.ego4d_fho.Ego4dLTADataset
+num_segments: 3
+version: 1
+num_input_clips: 2
+num_forecasted_clips: 20
+append_node: avg
+features: slowfast8x8_r101_k400
